@@ -7,9 +7,7 @@ class Imovel:
     """Classe base que representa as regras gerais da imobiliária"""
 
     def __init__(self):
-        """
-        Método construtor: inicializa os atributos comuns a todos os imóveis.
-        """
+        """Método construtor: inicializa os atributos comuns a todos os imóveis."""
         self.taxa_contratual = 2000.00
         self.valor_base = 0.0
         self.valor_adicionais = 0.0
@@ -45,14 +43,10 @@ class Casa(Imovel):
         return self.valor_base + self.valor_adicionais
 
 class Apartamento(Imovel):
-    """
-    Representa um Apartamento, herdando de Imovel, com regra especial de desconto.
-    """
+    """Representa um Apartamento, herdando de Imovel, com regra especial de desconto."""
 
     def __init__(self, quartos, tem_garagem, tem_criancas):
-        """
-        Inicializa os atributos, incluindo a verificação de crianças para o desconto.
-        """
+        """Inicializa os atributos, incluindo a verificação de crianças para o desconto."""
         super().__init__()
 
         self.quartos = quartos
@@ -61,9 +55,7 @@ class Apartamento(Imovel):
         self.valor_base = 700.00
 
     def calcular_aluguel(self):
-        """
-        Calcular o aluguel aplicando adicionais e o desconto de 5% se aplicável.
-        """
+        """Calcular o aluguel aplicando adicionais e o desconto de 5% se aplicável."""
         self.valor_adicionais = 0.0
         self.valor_desconto = 0.0
 
@@ -81,23 +73,17 @@ class Apartamento(Imovel):
         return subtotal - self.valor_desconto
 
 class Estudio(Imovel):
-    """
-    Representa um Estúdio, herdadando de Imovel, com regra especial para garagem.
-    """
+    """Representa um Estúdio, herdadando de Imovel, com regra especial para garagem."""
 
     def __init__(self, vagas_garagem):
-        """
-        Inicializa os atributos, recebendo a quantidade exata de vagas de garagem.
-        """
+        """Inicializa os atributos, recebendo a quantidade exata de vagas de garagem."""
         super().__init__()
 
         self.vagas_garagem = vagas_garagem
         self.valor_base = 1200.00
 
     def calcular_aluguel(self):
-        """
-        Calcula o aluguel aplicando a regra de pacotes de garagem.
-        """
+        """Calcula o aluguel aplicando a regra de pacotes de garagem."""
         self.valor_adicionais = 0.0
 
         if self.vagas_garagem > 0:
