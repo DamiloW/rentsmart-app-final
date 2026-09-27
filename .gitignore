@@ -1,0 +1,16 @@
+# Ignora arquivos automáticos compilados pelo Python
+__pycache__/
+
+# Ignora o banco de dados local de testes
+*.sqlite3
+
+# Ignora o ambiente virtual
+ll_env/
+venv/
+
+# Ignora arquivos de senhas e variáveis de ambiente confidenciais
+.env
+secrets.json
+
+# Ignora as configurações pessoais do seu VS Code
+.vscode/
