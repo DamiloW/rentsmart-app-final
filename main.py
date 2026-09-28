@@ -46,7 +46,7 @@ def iniciar_atendimento():
         imovel_escolhido = Estudio(vagas_garagem=vagas)
         nome_tipo = "Estúdio"
 
-    Valor_mensal = imovel_escolhido.calcular_aluguel()
+    valor_mensal = imovel_escolhido.calcular_aluguel()
 
     print("\n" + "=" * 45)
     print("          ORÇAMENTO FINAL          ")
@@ -57,8 +57,31 @@ def iniciar_atendimento():
     if imovel_escolhido.valor_desconto > 0:
         print(f"Desconto Aplicado........: R$ {imovel_escolhido.valor_desconto:.2f} (5% off)")
 
-    print(f"Valor do Aluguel........: R$ {Valor_mensal:.2f} / mês")
+    print(f"Valor do Aluguel........: R$ {valor_mensal:.2f} / mês")
     print("=" *45)
+
+# ==========================================
+# GERAÇÃO DO ARQUIVO CSV DE PROJEÇÃO
+# ==========================================
+
+    nome_arquivo = "projecao_12_meses.csv"
+
+    with open(nome_arquivo, mode='w', encoding='utf-8') as arquivo:
+        arquivo.write("Mes,Valor_Aluguel,Parcela_Taxa_Contrato,Total_a_Pagar\n")
+
+        parcela_taxa = imovel_escolhido.taxa_contratual / 5
+
+        for mes in range(1, 13):
+            if mes <= 5:
+                taxa_mes = parcela_taxa
+            else:
+                taxa_mes = 0.0
+
+            total_mes = valor_mensal + taxa_mes
+
+            arquivo.write(f"{mes},{valor_mensal:.2f},{taxa_mes:.2f},{total_mes:.2f}\n")
+
+    print(f"\n[SUCESSO] O arquivo '{nome_arquivo}' foi gerado na sua pasta com a prosposta de 1 ano!")
 
 if __name__ == "__main__":
     iniciar_atendimento()
