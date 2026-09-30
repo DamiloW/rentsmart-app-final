@@ -3,6 +3,7 @@ Módulo Principal do sistema RentSmart.
 Responsável pela interface com o usuário e geração do orçamento.
 """
 
+import os
 from imoveis import Casa, Apartamento, Estudio
 
 def iniciar_atendimento():
@@ -64,7 +65,15 @@ def iniciar_atendimento():
 # GERAÇÃO DO ARQUIVO CSV DE PROJEÇÃO
 # ==========================================
 
-    nome_arquivo = "projecao_12_meses.csv"
+    numero = 1
+
+    while True:
+        nome_arquivo = f"projecao_12_meses_{nome_tipo.lower()}_{numero}.csv"
+
+        if not os.path.exists(nome_arquivo):
+            break
+
+        numero += 1
 
     with open(nome_arquivo, mode='w', encoding='utf-8') as arquivo:
         arquivo.write("Mes,Valor_Aluguel,Parcela_Taxa_Contrato,Total_a_Pagar\n")
