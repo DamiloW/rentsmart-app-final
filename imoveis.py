@@ -26,7 +26,7 @@ class Casa(Imovel):
         super().__init__()
         self.quartos = quartos
         self.tem_garagem = tem_garagem
-        self.valor_base = 900.000
+        self.valor_base = 900.00
 
     def calcular_aluguel(self):
         """
@@ -73,7 +73,7 @@ class Apartamento(Imovel):
         return subtotal - self.valor_desconto
 
 class Estudio(Imovel):
-    """Representa um Estúdio, herdadando de Imovel, com regra especial para garagem."""
+    """Representa um Estúdio, herdando de Imovel, com regra especial para garagem."""
 
     def __init__(self, vagas_garagem):
         """Inicializa os atributos, recebendo a quantidade exata de vagas de garagem."""
@@ -94,19 +94,3 @@ class Estudio(Imovel):
                 self.valor_adicionais += 250.00 + (vagas_extras * 60.00)
 
         return self.valor_base + self.valor_adicionais
-
-# ==========================================
-# ÁREA DE TESTES (Desenvolvimento Incremental)
-# ==========================================
-
-if __name__ == "__main__":
-    meu_apto_teste = Apartamento(quartos=2, tem_garagem=True, tem_criancas=False)
-
-    print("\n--- Teste da Classe Estudio ---")
-    # Vamos testar um estúdio com 3 vagas. 
-    # Conta esperada: 1200 (base) + 250 (pelas 2 primeiras vagas) + 60 (pela 3ª vaga) = R$ 1510.00
-    meu_estudio_teste = Estudio(vagas_garagem=3)
-    valor_final_estudio = meu_estudio_teste.calcular_aluguel()
-    
-    print(f"Taxa de contrato herdada: R$ {meu_estudio_teste.taxa_contratual:.2f}")
-    print(f"Aluguel mensal calculado: R$ {valor_final_estudio:.2f}")
